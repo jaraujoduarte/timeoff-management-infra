@@ -6,6 +6,7 @@ Repository containing infra as code for the TimeOff Management Application (Gori
 
 
 
+
 # Setup
 In order to deploy the resources defined in this repo make sure to set the following tooling in your machine:
 
@@ -13,6 +14,11 @@ In order to deploy the resources defined in this repo make sure to set the follo
 - Terragrunt >= v0.23.0
 - Terraform >= v0.12.0
 - Kubectl >= 1.16
+```
+
+After setting up proper credentials for the target environment, make sure to setup the K8S authentication via the AWS CLI:
+```
+aws eks --region us-east-1 update-kubeconfig --name default
 ```
 
 # Deployment
