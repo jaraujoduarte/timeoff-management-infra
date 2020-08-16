@@ -4,7 +4,7 @@ Repository containing infra as code for the TimeOff Management Application (Gori
 
 ## Design
 
-
+![Image of infra](docs/timeoff-Infra.png)
 
 
 ## Enviornment Setup
