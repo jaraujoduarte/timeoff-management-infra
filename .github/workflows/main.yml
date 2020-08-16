@@ -1,0 +1,44 @@
+name: Terraform Pipeline
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  basic_checks:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine/terragrunt:0.12.23
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+
+      - name: 'Terraform Format'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          terraform fmt -recursive -check
+
+  terraform_plan:
+    needs: basic_checks
+    runs-on: ubuntu-latest
+    container:
+      image: alpine/terragrunt:0.12.23
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+
+      - name: 'Terraform Plan'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        run: |
+          source ./env/dev.sh && \
+          cd terragrunt && \
+          terragrunt plan-all
