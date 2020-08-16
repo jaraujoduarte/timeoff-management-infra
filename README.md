@@ -11,7 +11,7 @@ Repository containing infra as code for the TimeOff Management Application (Gori
 
 *NOTE:* The application is running in a private subnet with no direct access from the internet to the underlying infrastructure, it can only be accessed via the Load Balancer. About the exposed protocols, only HTTP is used since i didn't have a public domain at hand for the solution i chose (EKS, etc) but it's trivial to add by using the AWS ACM service and the ALB Ingress Controller annotations.
 
-## CI
+## CD
 
 Basic validations is done making use of Github Actions [workflows](.github/workflows)
 
