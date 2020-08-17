@@ -13,7 +13,7 @@ Repository containing infra as code for the TimeOff Management Application (Gori
 
 ## CD
 
-Basic validations is done making use of Github Actions [workflows](.github/workflows)
+Basic validation is done making use of Github Actions [workflows](.github/workflows)
 
 ## Enviornment Setup
 In order to deploy the resources defined in this repo make sure to set the following tooling in your machine:
@@ -48,7 +48,7 @@ kubectl patch deployment coredns -n kube-system --type json -p='[{"op": "remove"
 kubectl rollout restart -n kube-system deployment coredns
 ```
 
-- Create the necessary RBAC configuration for the ALB controller and the ALB controller itself. Before applying the manifests, modify the  VPC ID in the `k8s/alb-ingress-controller.yaml` file which necessary if using Fargate for the ALB to know where to spin up the LBs.
+- Deploy the necessary RBAC configuration for the ALB controller and the ALB controller itself. Before applying the manifests, modify the  VPC ID in the `k8s/alb-ingress-controller.yaml` file which is necessary if using Fargate for the ALB controller to know where to spin up the LBs.
 ```
 cd $PROJECT_ROOT/k8s
 kubectl apply -f .
